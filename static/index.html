@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Slodka Kraina Niepewnosci</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="/static/style.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" crossorigin="anonymous">
+	<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js" crossorigin="anonymous"></script>
+	<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+	<script defer src="/static/script.js"></script>
+</head>
+<body>
+	<header class="hero">
+		<div class="hero__content">
+			<p class="hero__eyebrow">Pan jeżyk obliczy wszystkie niepewnosci</p>
+			<h1 class="hero__title">Kolczaste pomiary bez utraty cyferek</h1>
+			<p class="hero__subtitle">Wpisz pomiary, a szybki algorytm jezyka Python zadba o wszystkie niepewnosci. JavaScript czuwa nad interfejsem, a przyjazne jeze przypominaja, by niczego nie obcinac.</p>
+			<div class="hero__actions">
+				<a class="hero__cta" href="#calculator">Rozpocznij pomiary</a>
+				<span class="hero__hint">Dziala takze na telefonie</span>
+			</div>
+		</div>
+	</header>
+	<main>
+		<section class="formulae">
+			<h2>Wzory na niepewnosci</h2>
+			<div class="formulae__grid">
+				<div class="formulae__card">
+					<h3>Niepewnosc typu A</h3>
+					<p>$$u_a = \sqrt{\frac{1}{n(n-1)} \sum_{i=1}^{n} (x_i - \bar{x})^2}$$</p>
+				</div>
+				<div class="formulae__card">
+					<h3>Niepewnosc typu B</h3>
+					<p>$$u_b = \frac{u_{przyrz}}{\sqrt{3}}$$</p>
+				</div>
+				<div class="formulae__card">
+					<h3>Niepewnosc laczna</h3>
+					<p>$$u_c = \sqrt{u_a^2 + u_b^2}$$</p>
+				</div>
+			</div>
+		</section>
+
+		<section id="calculator" class="calculator">
+			<h2>Twoje pomiary</h2>
+			<p class="calculator__intro">Dodaj co najmniej dwa pomiary. Kazda liczba zachowuje wszystkie cyfry, niezaleznie czy zapiszesz je kropka czy przecinkiem.</p>
+
+			<form id="uncertainty-form" class="calculator__form" novalidate>
+				<div class="measurement-list" id="measurement-list"></div>
+
+				<div class="form-actions">
+					<button type="button" class="btn btn--ghost" id="add-measurement">Dodaj pomiar</button>
+				</div>
+
+				<div class="device-input">
+					<label for="device-uncertainty">Niepewnosc urzadzenia (opcjonalnie)</label>
+					<input id="device-uncertainty" name="device-uncertainty" inputmode="decimal" step="any" placeholder="np. 0.05">
+				</div>
+
+				<div class="form-actions">
+					<button type="submit" class="btn btn--primary">Policz niepewnosci</button>
+				</div>
+
+				<p class="form-feedback" id="form-feedback" role="alert"></p>
+			</form>
+
+			<section class="results" id="results" aria-live="polite"></section>
+		</section>
+
+	</main>
+
+	<footer class="page-footer">
+		<p>by Corgi Software</p>
+	</footer>
+</body>
+</html>
