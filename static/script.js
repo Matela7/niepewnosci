@@ -173,9 +173,11 @@ function renderResults(data) {
 	list.className = 'results__list';
 
 	const entries = [
+		{ key: 'n', label: 'Liczba pomiarów' },
+		{ key: 'sum_of_squares', label: 'Suma kwadratów odchyleń' },
 		{ key: 'u_a', label: 'u_a (typ A)' },
 		{ key: 'u_b', label: 'u_b (typ B)' },
-		{ key: 'u_c', label: 'u_c (laczna)' }
+		{ key: 'u_c', label: 'u_c (łączna)' }
 	];
 
 	entries.forEach(({ key, label }) => {
@@ -185,6 +187,24 @@ function renderResults(data) {
 			list.appendChild(item);
 		}
 	});
+
+	// Dodaj składniki u_a jeśli istnieją
+	if (Array.isArray(data.u_a_ingredients) && data.u_a_ingredients.length > 0) {
+		const ingredientsItem = document.createElement('li');
+		ingredientsItem.innerHTML = `<strong>Składniki (x̄ - xᵢ)²:</strong>`;
+		const ingredientsList = document.createElement('ul');
+		ingredientsList.style.marginTop = '8px';
+		ingredientsList.style.marginLeft = '20px';
+		
+		data.u_a_ingredients.forEach((val, idx) => {
+			const subItem = document.createElement('li');
+			subItem.textContent = `Pomiar ${idx + 1}: ${String(val)}`;
+			ingredientsList.appendChild(subItem);
+		});
+		
+		ingredientsItem.appendChild(ingredientsList);
+		list.appendChild(ingredientsItem);
+	}
 
 	resultsSection.innerHTML = '';
 
