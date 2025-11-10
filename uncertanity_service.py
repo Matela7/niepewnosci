@@ -7,7 +7,7 @@ def uncertanity_ua(scores):
 
     mean = np.mean(scores)
     print(mean)
-    numerator = np.sum((scores - mean) ** 2)
+    numerator = np.sum((mean - scores) ** 2)
     print(numerator)
     u_a = np.sqrt(numerator / (n * (n - 1)))
     return u_a
